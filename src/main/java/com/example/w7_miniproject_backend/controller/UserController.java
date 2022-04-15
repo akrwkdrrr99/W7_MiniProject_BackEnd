@@ -1,4 +1,4 @@
-package com.example.w7_miniproject_backend.config.controller;
+package com.example.w7_miniproject_backend.controller;
 
 import com.example.w7_miniproject_backend.dto.userDto.KakaoUserResponseDto;
 import com.example.w7_miniproject_backend.dto.userDto.SignupRequestDto;
