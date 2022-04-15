@@ -1,8 +1,8 @@
-package com.example.todayerror.security.jwt;
+package com.example.w7_miniproject_backend.security.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.example.todayerror.security.UserDetailsImpl;
+import com.example.w7_miniproject_backend.security.UserDetailsImpl;
 
 import java.util.Date;
 

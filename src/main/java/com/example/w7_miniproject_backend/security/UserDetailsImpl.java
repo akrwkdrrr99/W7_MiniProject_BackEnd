@@ -1,12 +1,11 @@
-package com.example.todayerror.security;
+package com.example.w7_miniproject_backend.security;
 
-import com.example.todayerror.domain.User;
+import com.example.w7_miniproject_backend.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @RequiredArgsConstructor
 public class UserDetailsImpl implements UserDetails {

@@ -1,6 +1,6 @@
-package com.example.todayerror.security;
+package com.example.w7_miniproject_backend.security;
 
-import com.example.todayerror.security.jwt.JwtTokenUtils;
+import com.example.w7_miniproject_backend.security.jwt.JwtTokenUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;

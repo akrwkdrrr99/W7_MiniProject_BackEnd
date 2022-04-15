@@ -1,4 +1,4 @@
-package com.example.todayerror.security.filter;
+package com.example.w7_miniproject_backend.security.filter;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;

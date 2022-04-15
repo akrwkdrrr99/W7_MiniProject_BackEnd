@@ -1,4 +1,4 @@
-package com.example.todayerror.security.jwt;
+package com.example.w7_miniproject_backend.security.jwt;
 
 import org.springframework.stereotype.Component;
 

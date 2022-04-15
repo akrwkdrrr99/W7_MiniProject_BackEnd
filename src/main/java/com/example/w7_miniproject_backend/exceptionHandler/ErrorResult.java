@@ -1,4 +1,4 @@
-package com.example.todayerror.exceptionHandler;
+package com.example.w7_miniproject_backend.exceptionHandler;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

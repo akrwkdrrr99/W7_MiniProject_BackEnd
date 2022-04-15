@@ -1,4 +1,4 @@
-package com.example.todayerror.dto.UserDto;
+package com.example.w7_miniproject_backend.dto.userDto;
 
 import lombok.Builder;
 import lombok.Getter;

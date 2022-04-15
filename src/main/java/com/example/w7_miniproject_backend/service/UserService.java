@@ -1,8 +1,8 @@
-package com.example.todayerror.service;
+package com.example.w7_miniproject_backend.service;
 
-import com.example.todayerror.domain.User;
-import com.example.todayerror.dto.UserDto.SignupRequestDto;
-import com.example.todayerror.repository.UserRepository;
+import com.example.w7_miniproject_backend.domain.User;
+import com.example.w7_miniproject_backend.dto.userDto.SignupRequestDto;
+import com.example.w7_miniproject_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

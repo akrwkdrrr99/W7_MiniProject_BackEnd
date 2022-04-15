@@ -1,4 +1,4 @@
-package com.example.todayerror.security;
+package com.example.w7_miniproject_backend.security;
 
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;

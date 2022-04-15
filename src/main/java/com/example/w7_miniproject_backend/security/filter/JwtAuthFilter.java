@@ -1,7 +1,7 @@
-package com.example.todayerror.security.filter;
+package com.example.w7_miniproject_backend.security.filter;
 
-import com.example.todayerror.security.jwt.HeaderTokenExtractor;
-import com.example.todayerror.security.jwt.JwtPreProcessingToken;
+import com.example.w7_miniproject_backend.security.jwt.HeaderTokenExtractor;
+import com.example.w7_miniproject_backend.security.jwt.JwtPreProcessingToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;

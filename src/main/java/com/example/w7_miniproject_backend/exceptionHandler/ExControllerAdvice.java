@@ -1,4 +1,4 @@
-package com.example.todayerror.exceptionHandler;
+package com.example.w7_miniproject_backend.exceptionHandler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

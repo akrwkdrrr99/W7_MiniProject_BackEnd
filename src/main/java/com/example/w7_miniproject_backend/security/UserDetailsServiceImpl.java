@@ -1,7 +1,7 @@
-package com.example.todayerror.security;
+package com.example.w7_miniproject_backend.security;
 
-import com.example.todayerror.domain.User;
-import com.example.todayerror.repository.UserRepository;
+import com.example.w7_miniproject_backend.domain.User;
+import com.example.w7_miniproject_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

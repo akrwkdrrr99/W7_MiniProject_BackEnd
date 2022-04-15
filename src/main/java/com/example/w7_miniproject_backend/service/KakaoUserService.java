@@ -1,12 +1,13 @@
-package com.example.todayerror.service;
+package com.example.w7_miniproject_backend.service;
 
-import com.example.todayerror.domain.User;
-import com.example.todayerror.dto.UserDto.KakaoUserRequestDto;
-import com.example.todayerror.dto.UserDto.KakaoUserResponseDto;
-import com.example.todayerror.repository.UserRepository;
-import com.example.todayerror.security.UserDetailsImpl;
-import com.example.todayerror.security.jwt.JwtTokenUtils;
-import com.example.todayerror.security.provider.JWTAuthProvider;
+import com.example.w7_miniproject_backend.domain.User;
+import com.example.w7_miniproject_backend.dto.userDto.KakaoUserRequestDto;
+import com.example.w7_miniproject_backend.repository.UserRepository;
+import com.example.w7_miniproject_backend.security.UserDetailsImpl;
+import com.example.w7_miniproject_backend.security.jwt.JwtTokenUtils;
+import com.example.w7_miniproject_backend.security.provider.JWTAuthProvider;
+import com.example.w7_miniproject_backend.dto.userDto.KakaoUserResponseDto;
+import com.example.w7_miniproject_backend.repository.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

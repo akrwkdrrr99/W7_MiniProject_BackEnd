@@ -1,10 +1,10 @@
-package com.example.todayerror.security;
+package com.example.w7_miniproject_backend.security;
 
-import com.example.todayerror.security.filter.FormLoginFilter;
-import com.example.todayerror.security.filter.JwtAuthFilter;
-import com.example.todayerror.security.jwt.HeaderTokenExtractor;
-import com.example.todayerror.security.provider.FormLoginAuthProvider;
-import com.example.todayerror.security.provider.JWTAuthProvider;
+import com.example.w7_miniproject_backend.security.filter.FormLoginFilter;
+import com.example.w7_miniproject_backend.security.filter.JwtAuthFilter;
+import com.example.w7_miniproject_backend.security.jwt.HeaderTokenExtractor;
+import com.example.w7_miniproject_backend.security.provider.FormLoginAuthProvider;
+import com.example.w7_miniproject_backend.security.provider.JWTAuthProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -173,7 +173,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.addAllowedOriginPattern("*");
         configuration.addAllowedOrigin("http://localhost:3000"); // local 테스트 시
         // 수정 필요
-        configuration.addAllowedOrigin("http://example.amazonaws.com"); // 배포 시
+//        configuration.addAllowedOrigin("http://example.amazonaws.com"); // 배포 시
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.addExposedHeader("Authorization");
