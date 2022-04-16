@@ -27,7 +27,7 @@ public class UserController {
     // 닉네임 중복 확인
     @PostMapping("/user/idCheck")
     public ResponseEntity nicknameCheck(@RequestBody SignupRequestDto signupRequestDto) {
-        return userService.nicknameCheck(signupRequestDto.getNickname());
+        return userService.nicknameCheck(signupRequestDto.getUsername());
     }
 
     // 카카오 소셜 로그인

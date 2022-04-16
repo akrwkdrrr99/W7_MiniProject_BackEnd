@@ -18,10 +18,10 @@ public class UserService {
 
     public ResponseEntity registerUser(SignupRequestDto signupRequestDto) {
 
-        // nickname이 username
-        String nickname = signupRequestDto.getNickname();
+        // username
+        String username = signupRequestDto.getUsername();
 
-        if (userRepository.existsByUsername(nickname)) {
+        if (userRepository.existsByUsername(username)) {
             throw new IllegalArgumentException("중복된 닉네임입니다.");
         }
 
@@ -29,7 +29,7 @@ public class UserService {
         String enPassword = passwordEncoder.encode(signupRequestDto.getPassword());
 
         // 유저 생성 후 DB 저장
-        User user = new User(signupRequestDto, enPassword);
+        User user = new User(username, enPassword);
         userRepository.save(user);
 
         return ResponseEntity.ok().body("회원가입 완료");

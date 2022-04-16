@@ -1,6 +1,5 @@
 package com.example.w7_miniproject_backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,10 +36,5 @@ public class Post extends Timestamped {
     private User user;
     //     포스트 정보
     private String des;
-
-    likecnt
-    tags
-
-    private c
 
 }

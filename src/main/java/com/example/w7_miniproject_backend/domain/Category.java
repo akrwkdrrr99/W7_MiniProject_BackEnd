@@ -26,6 +26,4 @@ public class Category {
     @Column(nullable = false, columnDefinition = "c")
     private String space;
 
-
-
 }

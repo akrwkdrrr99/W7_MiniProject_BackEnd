@@ -113,7 +113,8 @@ public class KakaoUserService {
             String password = UUID.randomUUID().toString();
             String encodedPassword = passwordEncoder.encode(password);
 
-            kakaoUser = new User(nickname, encodedPassword, kakaoId);
+            kakaoUser = new User(nickname, encodedPassword);
+//            kakaoUser = new User(nickname, encodedPassword, kakaoId);
             userRepository.save(kakaoUser);
         }
         return kakaoUser;

@@ -1,14 +1,16 @@
 package com.example.w7_miniproject_backend.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import com.example.w7_miniproject_backend.dto.commentDto.CommentDto;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+@Entity
 @RequiredArgsConstructor
 public class Comment extends Timestamped{
 
@@ -26,5 +28,7 @@ public class Comment extends Timestamped{
 
     private String comments;
 
-
+    public void update(CommentDto commentDto) {
+        this.comments = commentDto.getComment();
+    }
 }
