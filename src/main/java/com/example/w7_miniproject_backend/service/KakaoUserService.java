@@ -1,13 +1,12 @@
 package com.example.w7_miniproject_backend.service;
 
 import com.example.w7_miniproject_backend.domain.User;
-import com.example.w7_miniproject_backend.dto.userDto.KakaoUserRequestDto;
+import com.example.w7_miniproject_backend.dto.KakaoUserRequestDto;
 import com.example.w7_miniproject_backend.repository.UserRepository;
 import com.example.w7_miniproject_backend.security.UserDetailsImpl;
 import com.example.w7_miniproject_backend.security.jwt.JwtTokenUtils;
 import com.example.w7_miniproject_backend.security.provider.JWTAuthProvider;
-import com.example.w7_miniproject_backend.dto.userDto.KakaoUserResponseDto;
-import com.example.w7_miniproject_backend.repository.UserRepository;
+import com.example.w7_miniproject_backend.dto.KakaoUserResponseDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

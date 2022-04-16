@@ -1,6 +1,6 @@
 package com.example.w7_miniproject_backend.validator;
 
-import com.example.w7_miniproject_backend.dto.userDto.SignupRequestDto;
+import com.example.w7_miniproject_backend.dto.SignupRequestDto;
 
 import java.util.IllformedLocaleException;
 import java.util.regex.Pattern;

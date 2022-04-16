@@ -1,4 +1,4 @@
-package com.example.w7_miniproject_backend.dto.userDto;
+package com.example.w7_miniproject_backend.dto;
 
 import lombok.Getter;
 

@@ -1,8 +1,5 @@
 package com.example.w7_miniproject_backend.domain;
 
-import com.example.w7_miniproject_backend.dto.userDto.SignupRequestDto;
-import com.example.w7_miniproject_backend.validator.UserInfoValidator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +32,7 @@ public class User extends Timestamped {
 
     private String userimg;
 
+    //user를 삭제하는 기능이 없기때문에, post랑 comment onetomany cascade remove 필요없음!
 
     //게시물 조회 할때쓸거임
     @JsonIgnoreProperties({"user"})

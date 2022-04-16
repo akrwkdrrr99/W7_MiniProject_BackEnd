@@ -1,7 +1,7 @@
 package com.example.w7_miniproject_backend.controller;
 
-import com.example.w7_miniproject_backend.dto.userDto.KakaoUserResponseDto;
-import com.example.w7_miniproject_backend.dto.userDto.SignupRequestDto;
+import com.example.w7_miniproject_backend.dto.KakaoUserResponseDto;
+import com.example.w7_miniproject_backend.dto.SignupRequestDto;
 import com.example.w7_miniproject_backend.service.KakaoUserService;
 import com.example.w7_miniproject_backend.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -1,6 +1,5 @@
 package com.example.w7_miniproject_backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +12,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @RequiredArgsConstructor
+@JsonIgnoreProperties({"post"})
 public class Post extends Timestamped {
 //    statement.getGerenatedkey() 사용하면 데이터를 저장하면서 동시에 기본 키 값을 얻어와서 db를 한번만 조회 .
     @Id
@@ -24,9 +24,16 @@ public class Post extends Timestamped {
     @Column(columnDefinition = "TEXT")
     private String roomimg;
 
-    @JsonIgnoreProperties({"post"})
+    //게시글 삭제는 comment,like, scrap 도 삭제시켜버려
+
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Like>like;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Scrapbook>scrap;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -37,10 +44,5 @@ public class Post extends Timestamped {
     private User user;
     //     포스트 정보
     private String des;
-
-    likecnt
-    tags
-
-    private c
 
 }
