@@ -20,13 +20,13 @@ public class UserController {
 
     //회원가입
     @PostMapping("/user/signup")
-    public boolean registerUser(@RequestBody SignupRequestDto signupRequestDto){
+    public ResponseEntity registerUser(@RequestBody SignupRequestDto signupRequestDto){
         return userService.registerUser(signupRequestDto);
     }
 
     // 닉네임 중복 확인
     @PostMapping("/user/idCheck")
-    public boolean nicknameCheck(@RequestBody SignupRequestDto signupRequestDto) {
+    public ResponseEntity nicknameCheck(@RequestBody SignupRequestDto signupRequestDto) {
         return userService.nicknameCheck(signupRequestDto.getNickname());
     }
 
