@@ -4,6 +4,8 @@ import com.example.w7_miniproject_backend.domain.User;
 import com.example.w7_miniproject_backend.dto.userDto.SignupRequestDto;
 import com.example.w7_miniproject_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    public boolean registerUser(SignupRequestDto signupRequestDto) {
+    public ResponseEntity registerUser(SignupRequestDto signupRequestDto) {
 
         // nickname이 username
         String nickname = signupRequestDto.getNickname();
@@ -30,11 +32,11 @@ public class UserService {
         User user = new User(signupRequestDto, enPassword);
         userRepository.save(user);
 
-        return true;
+        return ResponseEntity.ok().body("회원가입 완료");
     }
 
     // 닉네임 중복 확인
-    public boolean nicknameCheck(String nickname) {
-        return userRepository.existsByUsername(nickname);
+    public ResponseEntity nicknameCheck(String nickname) {
+        return  ResponseEntity.ok().body(userRepository.existsByUsername(nickname));
     }
 }
