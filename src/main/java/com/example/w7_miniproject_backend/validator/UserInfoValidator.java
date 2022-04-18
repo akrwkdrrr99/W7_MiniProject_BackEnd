@@ -11,11 +11,11 @@ public class UserInfoValidator {
         String password = signupRequestDto.getPassword();
         String passwordCheck = signupRequestDto.getPasswordCheck();
 
-        String patternNickname = "^[가-힣0-9]{3,10}$";
+        String patternNickname = "^[a-zA-Z가-힣0-9]{3,10}$";
 
         // 닉네임 유효성 검사
         if (nickname == null || !Pattern.matches(patternNickname, nickname)) {
-            throw new IllegalArgumentException("아이디는 한글과 숫자 3~10자리로 입력해주세요");
+            throw new IllegalArgumentException("아이디는 한글과 영숫자 3~10자리로 입력해주세요");
         }
 
         // 비밀번호 유효성 검사

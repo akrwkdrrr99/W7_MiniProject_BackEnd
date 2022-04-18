@@ -28,15 +28,17 @@ public class UserService {
         // 패스워드 암호화
         String enPassword = passwordEncoder.encode(signupRequestDto.getPassword());
 
+        //닉네임 추가
+        String nickname = signupRequestDto.getNickname();
         // 유저 생성 후 DB 저장
-        User user = new User(username, enPassword);
+        User user = new User(username, enPassword, nickname);
         userRepository.save(user);
 
         return ResponseEntity.ok().body("회원가입 완료");
     }
 
     // 닉네임 중복 확인
-    public ResponseEntity nicknameCheck(String nickname) {
-        return  ResponseEntity.ok().body(userRepository.existsByUsername(nickname));
+    public ResponseEntity nicknameCheck(String username) {
+        return  ResponseEntity.ok().body(userRepository.existsByUsername(username));
     }
 }
