@@ -11,7 +11,9 @@ import com.example.w7_miniproject_backend.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.Store;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 
@@ -45,6 +47,26 @@ public class PostService {
 
         return createPost;
     }
+
+    public List<Post> getPosts(Long postId){
+        return postRepository.findAllBypostid(postId);
+    }
+
+    public Post updatePost(Long postId, PostRequestDto postRequestDto,
+                           UserDetailsImpl userDetails,
+                           CategoryRequestDto categoryRequestDto){
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new NullPointerException("그런 포스트는 없어요")
+        );
+        post.update(postRequestDto, userDetails, categoryRequestDto);
+        postRepository.save(post);
+        return post;
+    }
+
+
+
+
+
 
 
 

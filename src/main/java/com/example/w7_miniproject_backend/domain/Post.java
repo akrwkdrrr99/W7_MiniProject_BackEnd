@@ -2,6 +2,7 @@ package com.example.w7_miniproject_backend.domain;
 
 import com.example.w7_miniproject_backend.dto.userDto.CategoryRequestDto;
 import com.example.w7_miniproject_backend.dto.userDto.PostRequestDto;
+import com.example.w7_miniproject_backend.security.UserDetailsImpl;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -51,6 +52,13 @@ public class Post extends Timestamped {
     public Post(String username, String roomimg, String des, String roomsize, String roomstyle, String space) {
         super();
     }
+
+    public void update(PostRequestDto postRequestDto, UserDetailsImpl userDetails, CategoryRequestDto categoryRequestDto) {
+    }
+
+
+
+
 
     // 굳이 like가 이곳에 저장 될필요가 없다.
     // 윤s dto를 따로 만들어서 전달

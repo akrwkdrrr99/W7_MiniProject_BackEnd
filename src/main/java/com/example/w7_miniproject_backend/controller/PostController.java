@@ -5,6 +5,7 @@ import com.example.w7_miniproject_backend.domain.Category;
 import com.example.w7_miniproject_backend.domain.Post;
 import com.example.w7_miniproject_backend.dto.userDto.CategoryRequestDto;
 import com.example.w7_miniproject_backend.dto.userDto.PostRequestDto;
+import com.example.w7_miniproject_backend.repository.PostRepository;
 import com.example.w7_miniproject_backend.security.UserDetailsImpl;
 import com.example.w7_miniproject_backend.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -46,21 +47,42 @@ public class PostController {
 //
 //    }
     @ResponseBody
-    @PostMapping("/posts/new")
+    @PostMapping("/posts/new")  // 포스트 생성
     public Post createPost(@RequestPart PostRequestDto postRequestDto,
                            @AuthenticationPrincipal UserDetailsImpl userDetails,
                            @RequestBody CategoryRequestDto categoryRequestDto) {
         return postService.createPost(postRequestDto, userDetails, categoryRequestDto);
 }
-// 상세 진행은 서비스단으로 가져가서 꺼내 쓰는 방향으로 진행
+// 상세 진행은 서비스단으로 가져가서 꺼내 iomja쓰는 방향으로 진행
 
-    @GetMapping("/posts/{postid}")
-    public List<Post> read(@PathVariable Long postid, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        if(userDetails == null){
-            return postService.getposts(postId,null);
-        }
-        return postService.getposts(postid, userDetails);
+    @ResponseBody
+    @GetMapping("/posts/{postId}") //특정 포스트 조회
+    public List<Post> readPost(@RequestPart Post post){
+        Long postId = post.getId();
+        return postService.getPosts(postId);
     }
+
+
+    @ResponseBody
+    @PutMapping("/posts/{postId}")
+    public Post updatePost(@PathVariable Long postId,
+                           @RequestPart PostRequestDto postRequestDto,
+                           @AuthenticationPrincipal UserDetailsImpl userDetails,
+                           @RequestBody CategoryRequestDto categoryRequestDto){
+        return postService.updatePost(postId, postRequestDto, userDetails, categoryRequestDto);
+
+
+    }
+
+//    @DeleteMapping("/posts/{postId}")
+//    public String deletePost(@PathVariable Long postId){
+//        postRepository.deleteById(postId);
+//        return "포스트를 삭제함";
+//    } 아니 삭제 왜 안됨?
+
+
+
+
 
 
 
