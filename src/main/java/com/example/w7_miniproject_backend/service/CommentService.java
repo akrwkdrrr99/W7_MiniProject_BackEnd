@@ -5,6 +5,7 @@ import com.example.w7_miniproject_backend.domain.Post;
 import com.example.w7_miniproject_backend.domain.User;
 import com.example.w7_miniproject_backend.dto.commentDto.CommentDto;
 import com.example.w7_miniproject_backend.repository.CommentRepository;
+import com.example.w7_miniproject_backend.repository.PostRepository;
 import com.example.w7_miniproject_backend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class CommentService {
     private final PostRepository postRepository;
 
     public ResponseEntity registerComment(CommentDto commentDto, String username) {
-        Post post = postRepository.findById(commentDto.getPostId()).orElseThrow(
+        Post post = postRepository.findById(commentDto.getPost().getId()).orElseThrow(
                 () -> new NullPointerException("게시글이 존재하지 않습니다.")
         );
         User user = userRepository.findByUsername(username).orElseThrow(() -> new NullPointerException("회원이 아닙니다."));

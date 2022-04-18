@@ -29,6 +29,6 @@ public class Comment extends Timestamped{
     private String comments;
 
     public void update(CommentDto commentDto) {
-        this.comments = commentDto.getComment();
+        this.comments = commentDto.getComments();
     }
 }

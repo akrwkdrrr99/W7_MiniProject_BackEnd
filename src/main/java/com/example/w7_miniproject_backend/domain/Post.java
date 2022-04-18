@@ -1,17 +1,16 @@
 package com.example.w7_miniproject_backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Post extends Timestamped {
 //    statement.getGerenatedkey() 사용하면 데이터를 저장하면서 동시에 기본 키 값을 얻어와서 db를 한번만 조회 .
     @Id
@@ -22,6 +21,7 @@ public class Post extends Timestamped {
     //columndefinition ="TEXT"로 해야하는가?
     @Column(columnDefinition = "TEXT")
     private String roomimg;
+    private String roomUrl;
 
     @JsonIgnoreProperties({"post"})
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
