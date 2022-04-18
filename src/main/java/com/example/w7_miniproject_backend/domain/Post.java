@@ -1,5 +1,6 @@
 package com.example.w7_miniproject_backend.domain;
 
+import com.example.w7_miniproject_backend.enums.RoomGroup;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,24 +26,22 @@ public class Post extends Timestamped {
     private String roomimg;
 
     //게시글 삭제는 comment,like, scrap 도 삭제시켜버려
-
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Like>like;
+    private List<Like> like;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Scrapbook>scrap;
+    private List<Scrapbook> scrap;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private RoomGroup roomGroup;
 
     @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;
     //     포스트 정보
     private String des;
-
 }
