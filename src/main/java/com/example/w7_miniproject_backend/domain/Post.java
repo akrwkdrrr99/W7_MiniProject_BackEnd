@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"post"})
 public class Post extends Timestamped {
 //    statement.getGerenatedkey() 사용하면 데이터를 저장하면서 동시에 기본 키 값을 얻어와서 db를 한번만 조회 .
     @Id
@@ -23,9 +24,16 @@ public class Post extends Timestamped {
     private String roomimg;
     private String roomUrl;
 
-    @JsonIgnoreProperties({"post"})
+    //게시글 삭제는 comment,like, scrap 도 삭제시켜버려
+
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Like>like;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Scrapbook>scrap;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
