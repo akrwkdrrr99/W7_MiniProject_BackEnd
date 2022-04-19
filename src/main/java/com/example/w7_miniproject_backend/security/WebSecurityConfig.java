@@ -141,6 +141,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("DELETE,/posts/**");
 
         // comment 페이지 허용
+        skipPathList.add("POST,/comment");
         skipPathList.add("POST,/comment/**");
         skipPathList.add("PUT,/comment/**");
         skipPathList.add("DELETE,/comment/**");

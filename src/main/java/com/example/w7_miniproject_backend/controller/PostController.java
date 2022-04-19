@@ -17,12 +17,12 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/")
-    public ResponseEntity<PostResponseDto> getAllPost(@RequestHeader("Authorization") String user){
+    public ResponseEntity<PostResponseDto.MainResponse> getAllPost(@RequestHeader("Authorization") String user){
         return postService.getAllPost();
     }
 
     @GetMapping("/posts/{postId}")
-    public ResponseEntity<PostResponseDto> getPostDetails(@PathVariable(value="postId") Long postId,
+    public ResponseEntity<PostResponseDto.DetailResponse> getPostDetails(@PathVariable(value="postId") Long postId,
                                                            @RequestHeader("Authorization") String user
     ){
         return new ResponseEntity(postService.getPostDeatils(postId, user) , HttpStatus.OK);

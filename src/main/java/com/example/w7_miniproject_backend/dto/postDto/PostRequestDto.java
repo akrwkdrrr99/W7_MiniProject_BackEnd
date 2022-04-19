@@ -1,5 +1,6 @@
 package com.example.w7_miniproject_backend.dto.postDto;
 
+import com.example.w7_miniproject_backend.domain.Category;
 import lombok.*;
 
 
@@ -12,5 +13,6 @@ public class PostRequestDto {
     @Builder
     public static class SaveRequest {
         private String des;
+        private Category category;
     }
 }

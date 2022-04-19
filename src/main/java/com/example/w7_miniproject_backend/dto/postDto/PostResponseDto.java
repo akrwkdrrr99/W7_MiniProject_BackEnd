@@ -17,14 +17,16 @@ public class PostResponseDto {
     @Builder
     @Data
     public static class MainResponse {
-        private String userName;
+        private Long id;
+        private String nickname;
         private String category;
         private String roomimg;
-        private String roomUrl;
-        private Long likeTotal;
-        private Long scrapTotal;
+        private String roomurl;
+        private Long liketotal;
+        private Long scraptotal;
         private String des;
         private String modifiedAt;
+//        private Category category;
     }
 
     @AllArgsConstructor
@@ -32,14 +34,15 @@ public class PostResponseDto {
     @Builder
     @Data
     public static class DetailResponse {
-        private String userName;
+        private String nickname;
         private String category;
         private String roomimg;
-        private String roomUrl;
-        private Long likeTotal;
-        private Long scrapTotal;
+        private String roomurl;
+        private Long liketotal;
+        private Long scraptotal;
         private String des;
         private String modifiedAt;
+//        private Category category;
         List<Comment> comment;
     }
 }

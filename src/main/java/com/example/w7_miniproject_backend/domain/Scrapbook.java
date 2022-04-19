@@ -1,5 +1,6 @@
 package com.example.w7_miniproject_backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class Scrapbook extends Timestamped{
     @Id
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     private Post post;
 

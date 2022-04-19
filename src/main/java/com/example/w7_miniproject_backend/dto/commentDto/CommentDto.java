@@ -7,31 +7,34 @@ import lombok.*;
 @Getter
 public class CommentDto {
     private String comments;
-    private Long postId;
+    private Long postid;
 
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
+    @Getter
     public static class Response {
-        private Long commentId;
+        private Long commentid;
         private String comments;
         private String createdAt;
-        private String userName;
+        private String username;
     }
 
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
+    @Getter
     public static class commentResponse {
-        private Long commentId;
+        private Long commentid;
         private String createdAt;
     }
 
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
+    @Getter
     public static class commentUpdateResponse {
-        private Long commentId;
+        private Long commentid;
         private String modifiedAt;
     }
 }
