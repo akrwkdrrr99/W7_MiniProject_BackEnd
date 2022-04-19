@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Category {
 //카테고리도 createcategory로 service만들기?
 
