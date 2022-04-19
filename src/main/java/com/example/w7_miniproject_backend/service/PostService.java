@@ -1,13 +1,11 @@
 package com.example.w7_miniproject_backend.service;
 
+import com.example.w7_miniproject_backend.domain.Comment;
 import com.example.w7_miniproject_backend.domain.Post;
 import com.example.w7_miniproject_backend.domain.User;
 import com.example.w7_miniproject_backend.dto.postDto.PostRequestDto;
 import com.example.w7_miniproject_backend.dto.postDto.PostResponseDto;
-import com.example.w7_miniproject_backend.repository.LikeRepository;
-import com.example.w7_miniproject_backend.repository.PostRepository;
-import com.example.w7_miniproject_backend.repository.ScrapRepository;
-import com.example.w7_miniproject_backend.repository.UserRepository;
+import com.example.w7_miniproject_backend.repository.*;
 import com.example.w7_miniproject_backend.security.jwt.JwtDecoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,6 +26,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final LikeRepository likeRepository;
+    private final CommentRepository commentRepository;
     private final ScrapRepository scrapRepository;
     private final JwtDecoder jwtDecoder;
 
@@ -56,6 +55,7 @@ public class PostService {
         String username = jwtDecoder.decodeUsername(user);
         User joinUser = userRepository.findByUsername(username).orElseThrow(
                 () -> new IllegalArgumentException("유효한 회원을 찾을 수 없습니다."));
+//        List<Comment> commentList = commentRepository.findByPostId(postId);
         Long Likes = 0L;
         Long Scraps = 0L;
         if (likeRepository.findByUserAndPost(joinUser, post).orElse(null) == null){
@@ -74,6 +74,7 @@ public class PostService {
                 .roomUrl(post.getRoomUrl())
                 .likeTotal(Likes)
                 .scrapTotal(Scraps)
+//                .comment(commentList)
                 .build();
         return new ResponseEntity(detailDto, HttpStatus.OK);
     }

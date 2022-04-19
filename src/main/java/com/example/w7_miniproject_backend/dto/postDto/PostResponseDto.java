@@ -1,9 +1,13 @@
 package com.example.w7_miniproject_backend.dto.postDto;
 
+import com.example.w7_miniproject_backend.domain.Category;
+import com.example.w7_miniproject_backend.domain.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 
 public class PostResponseDto {
@@ -36,5 +40,6 @@ public class PostResponseDto {
         private Long scrapTotal;
         private String des;
         private String modifiedAt;
+        List<Comment> comment;
     }
 }

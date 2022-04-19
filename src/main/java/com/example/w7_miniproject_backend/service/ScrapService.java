@@ -36,6 +36,15 @@ public class ScrapService {
                 .build();
         //있어? 지우고 0줘
         if (scrapRepository.findByPostAndUser(post, user).orElse(null) == null) {
+            scrapRepository.save(scrap);
+            Long cnt = scrapRepository.countAllByPostId(postId);
+            return ScrapDto.builder()
+                    .scrapbool(true)
+                    .scrapcnt(cnt)
+                    .build();
+        }
+        //없어? 만들고 1줘
+        else {
             scrapRepository.deleteByPostAndUser(post ,user);
             Long cnt = scrapRepository.countAllByPostId(postId);
             return ScrapDto.builder()
@@ -43,16 +52,6 @@ public class ScrapService {
                     .scrapcnt(cnt)
                     .build();
         }
-        //없어? 만들고 1줘
-        else {
-            scrapRepository.save(scrap);
-            Long cnt = scrapRepository.countAllByPostId(postId);
-            return ScrapDto.builder()
-                    .scrapbool(false)
-                    .scrapcnt(cnt)
-                    .build();
-        }
-
     }
 
     public List<Post> readScrap(String username) {
