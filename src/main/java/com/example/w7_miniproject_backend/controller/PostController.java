@@ -27,8 +27,8 @@ public class PostController {
 
     @PostMapping("/post/new")
     public ResponseEntity postSave(@RequestPart("file") MultipartFile multipartFile ,
-                                               @RequestPart("information") PostRequestDto.SaveRequest postDto ,
-                                               @RequestHeader("Authorization") String user){
+                                   @RequestPart("jsons") PostRequestDto.SaveRequest postDto ,
+                                   @RequestHeader("Authorization") String user){
         return postService.save(multipartFile , postDto , user);
     }
 

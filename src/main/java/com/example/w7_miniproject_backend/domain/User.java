@@ -27,10 +27,8 @@ public class User extends Timestamped {
     @Column(nullable = false)
     private String password;
 
-    private String userimg;
 
     //user를 삭제하는 기능이 없기때문에, post랑 comment onetomany cascade remove 필요없음!
-
 //    //게시물 조회 할때쓸거임
 //    @JsonIgnoreProperties({"user"})
 //    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
@@ -42,7 +40,4 @@ public class User extends Timestamped {
         this.nickname = nickname;
     }
 
-    public User(String nickname, String encodedPassword, Long kakaoId) {
-        super();
-    }
 }

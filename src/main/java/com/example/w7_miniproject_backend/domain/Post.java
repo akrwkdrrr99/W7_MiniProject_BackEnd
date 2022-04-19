@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Entity
@@ -26,23 +27,17 @@ public class Post extends Timestamped {
 
     //게시글 삭제는 comment,like, scrap 도 삭제시켜버려
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Like>like;
+//    @Enumerated(EnumType.STRING)
+//    @Column(nullable = false)
+//    private RoomGroup roomGroup;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Scrapbook>scrap;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
 
     @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;
     //     포스트 정보
     private String des;
-
 }

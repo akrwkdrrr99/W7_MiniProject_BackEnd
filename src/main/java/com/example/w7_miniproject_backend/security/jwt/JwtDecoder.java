@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 import java.util.Optional;
 
-import static com.example.w7_miniproject_backend.security.jwt.JwtTokenUtils.*;
-
 @Component
 public class JwtDecoder {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -22,7 +20,7 @@ public class JwtDecoder {
                 .orElseThrow(() -> new IllegalArgumentException("유효한 토큰이 아닙니다."));
 
         Date expiredDate = decodedJWT
-                .getClaim(CLAIM_EXPIRED_DATE)
+                .getClaim(JwtTokenUtils.CLAIM_EXPIRED_DATE)
                 .asDate();
 
         Date now = new Date();
@@ -31,7 +29,7 @@ public class JwtDecoder {
         }
 
         String username = decodedJWT
-                .getClaim(CLAIM_USER_NAME)
+                .getClaim(JwtTokenUtils.CLAIM_USER_NAME)
                 .asString();
 
         return username;
@@ -41,7 +39,7 @@ public class JwtDecoder {
         DecodedJWT jwt = null;
 
         try {
-            Algorithm algorithm = Algorithm.HMAC256(JWT_SECRET);
+            Algorithm algorithm = Algorithm.HMAC256(JwtTokenUtils.JWT_SECRET);
             JWTVerifier verifier = JWT
                     .require(algorithm)
                     .build();

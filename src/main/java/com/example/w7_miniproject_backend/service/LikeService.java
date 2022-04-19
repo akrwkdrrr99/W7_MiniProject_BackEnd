@@ -29,9 +29,11 @@ public class LikeService {
                 .post(post)
                 .user(user)
                 .build();
+
+
         //있어? 지우고 0줘
-        if (likeRepository.findByPostIdAndUsername(like)){
-            likeRepository.deleteByPostIdAndUsername(like);
+        if (likeRepository.findByUserAndPost(user, post).orElse(null) == null){
+            likeRepository.deleteByPostId(post);
             Long cnt = likeRepository.countAllByPostId(postId);
             return LikeDto.builder()
                     .likebool(false)
