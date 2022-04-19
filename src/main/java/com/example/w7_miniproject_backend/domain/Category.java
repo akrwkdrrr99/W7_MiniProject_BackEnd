@@ -1,16 +1,16 @@
 package com.example.w7_miniproject_backend.domain;
 
+import com.example.w7_miniproject_backend.enums.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
-
-@NoArgsConstructor
-//@RequiredArgsConstructor //
-@Getter
 @Entity
+@Getter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Category {
 //카테고리도 createcategory로 service만들기?
 
@@ -18,19 +18,15 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "a")
-    private String roomsize;
+    @Convert(converter = ResidenceConverter.class)
+    private Residence residence;
 
-    @Column(nullable = false, columnDefinition = "b")
-    private String roomstyle;
+    @Convert(converter = SizeConverter.class)
+    private Size roomsize;
 
-    @Column(nullable = false, columnDefinition = "c")
-    private String space;
+    @Convert(converter = SpaceConverter.class)
+    private Space space;
 
-
-    public Category(String roomsize, String roomstyle, String space) {
-        this.roomsize = roomsize;
-        this.roomstyle = roomstyle;
-        this.space = space;
-    }
+    @Convert(converter = StyleConverter.class)
+    private Style roomstyle;
 }

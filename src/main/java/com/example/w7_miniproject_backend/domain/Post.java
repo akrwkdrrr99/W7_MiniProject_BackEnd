@@ -27,17 +27,19 @@ public class Post extends Timestamped {
     private String roomimg;
     private String roomUrl;
 
-//    @Enumerated(EnumType.STRING)
-//    @Column(nullable = false)
-//    private RoomGroup roomGroup;
-
     @JsonIgnoreProperties({"post"})
     @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Like> like;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    private List<Scrapbook> scrap;
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
     private Category category;
+
     @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;
@@ -45,5 +47,4 @@ public class Post extends Timestamped {
 
     @Column
     private String des;
-
 }
