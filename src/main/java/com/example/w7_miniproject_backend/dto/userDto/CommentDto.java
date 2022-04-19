@@ -1,9 +1,12 @@
-package com.example.w7_miniproject_backend.dto.commentDto;
+package com.example.w7_miniproject_backend.dto.userDto;
+
 
 import com.example.w7_miniproject_backend.domain.Post;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Setter
 @Getter
 public class CommentDto {
     private String comments;

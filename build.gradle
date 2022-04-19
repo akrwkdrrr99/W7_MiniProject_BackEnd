@@ -36,7 +36,7 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
     implementation 'com.auth0:java-jwt:3.19.1'
 
-    // aws
+    // aws s3로 파일 서버에 저장하기 위한 시작 1
     implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
     // swagger
@@ -44,6 +44,8 @@ dependencies {
     implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     implementation group: 'io.springfox', name: 'springfox-bean-validators', version: '2.9.2'
     implementation group: 'io.springfox', name: 'springfox-schema', version: '2.9.2'
+
+
 }
 
 tasks.named('test') {

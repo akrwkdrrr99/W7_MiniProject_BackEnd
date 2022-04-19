@@ -7,14 +7,14 @@ import java.util.regex.Pattern;
 
 public class UserInfoValidator {
     public static void validateUserRegister(SignupRequestDto signupRequestDto) {
-        String nickname = signupRequestDto.getNickname();
+        String username = signupRequestDto.getUsername();
         String password = signupRequestDto.getPassword();
         String passwordCheck = signupRequestDto.getPasswordCheck();
 
         String patternNickname = "^[a-zA-Z가-힣0-9]{3,10}$";
 
         // 닉네임 유효성 검사
-        if (nickname == null || !Pattern.matches(patternNickname, nickname)) {
+        if (username == null || !Pattern.matches(patternNickname, username)) {
             throw new IllegalArgumentException("아이디는 한글과 영숫자 3~10자리로 입력해주세요");
         }
 
@@ -24,7 +24,7 @@ public class UserInfoValidator {
         }
 
         // 비밀번호게 닉네임 포함 여부 유효성 검사
-        if (password.contains(nickname)) {
+        if (password.contains(username)) {
             throw new IllformedLocaleException("비밀번호에 닉네임을 포함할 수 없습니다");
         }
 

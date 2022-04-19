@@ -5,6 +5,7 @@ import com.example.w7_miniproject_backend.dto.postDto.PostResponseDto;
 import com.example.w7_miniproject_backend.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

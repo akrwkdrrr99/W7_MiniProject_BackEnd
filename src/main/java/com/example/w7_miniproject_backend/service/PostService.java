@@ -54,7 +54,7 @@ public class PostService {
     public ResponseEntity<PostResponseDto> getAllPost() {
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
         List<PostResponseDto> postReponse = new ArrayList<>();
-        for(Post post : posts) {
+        for (Post post : posts) {
             Long LikeTotal = likeRepository.countAllByPostId(post.getId());
             PostResponseDto postDto = PostResponseDto
                     .builder()
@@ -73,3 +73,4 @@ public class PostService {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDateTime);
     }
 }
+

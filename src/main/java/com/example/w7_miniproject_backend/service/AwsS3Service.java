@@ -74,4 +74,5 @@ public class AwsS3Service {
 //        }
         return fileName.substring(fileName.lastIndexOf("."));
     }
+
 }
