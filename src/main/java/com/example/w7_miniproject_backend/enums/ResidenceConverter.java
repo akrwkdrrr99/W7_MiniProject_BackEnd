@@ -1,6 +1,6 @@
 package com.example.w7_miniproject_backend.enums;
 
-import com.sun.jmx.defaults.ServiceName;
+//import com.sun.jmx.defaults.ServiceName;
 
 import javax.persistence.AttributeConverter;
 

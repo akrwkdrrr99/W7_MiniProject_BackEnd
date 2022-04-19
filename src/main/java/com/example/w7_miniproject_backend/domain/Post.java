@@ -32,7 +32,7 @@ public class Post extends Timestamped {
     private List<Comment> comments;
 
     @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-    private List<Like> like;
+    private List<Liken> liken;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Scrapbook> scrap;

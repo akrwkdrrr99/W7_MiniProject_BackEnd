@@ -8,10 +8,7 @@ import com.example.w7_miniproject_backend.security.UserDetailsImpl;
 import com.example.w7_miniproject_backend.service.ScrapService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,14 +22,14 @@ public class ScrapController  {
     //스크랩 버튼 불린도 좋아요처럼 진행 하면 될듯?
     //스크랩북보기 누르면 get하고 scrap list싸버리기
     @PostMapping("/scrap/{postId}")
-    public ScrapDto createScrap(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return scrapService.createScrap(postId, userDetails.getUsername());
+    public ScrapDto createScrap(@PathVariable Long postId, @RequestHeader("Authorization") String user) {
+        return scrapService.createScrap(postId, user);
     }
 
     //userid와 postid로 찾아서 보내주장
     @GetMapping("/scrap")
-    public List<Post> readScrap(@AuthenticationPrincipal UserDetailsImpl userDetails){
-        return scrapService.readScrap(userDetails.getUsername());
+    public List<Post> readScrap(@RequestHeader("Authorization") String user){
+        return scrapService.readScrap(user);
     }
 
 }

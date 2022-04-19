@@ -7,7 +7,7 @@ import lombok.*;
 @Getter
 public class CommentDto {
     private String comments;
-    private Post post;
+    private Long postId;
 
     @AllArgsConstructor
     @NoArgsConstructor

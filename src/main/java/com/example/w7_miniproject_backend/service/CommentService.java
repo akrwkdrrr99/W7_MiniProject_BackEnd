@@ -23,7 +23,7 @@ public class CommentService {
     private final PostRepository postRepository;
 
     public ResponseEntity registerComment(CommentDto commentDto, String username) {
-        Post post = postRepository.findById(commentDto.getPost().getId()).orElseThrow(
+        Post post = postRepository.findById(commentDto.getPostId()).orElseThrow(
                 () -> new NullPointerException("게시글이 존재하지 않습니다.")
         );
         User user = userRepository.findByUsername(username).orElseThrow(() -> new NullPointerException("회원이 아닙니다."));

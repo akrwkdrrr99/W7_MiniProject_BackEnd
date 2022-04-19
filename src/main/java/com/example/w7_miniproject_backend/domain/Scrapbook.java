@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 public class Scrapbook extends Timestamped{
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;

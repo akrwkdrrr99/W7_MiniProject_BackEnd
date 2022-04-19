@@ -14,8 +14,7 @@ import javax.persistence.*;
 public class Comment extends Timestamped{
 
     @Id
-    //user와 comment generationtype설정 확인!
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

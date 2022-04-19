@@ -7,6 +7,7 @@ import com.example.w7_miniproject_backend.dto.ScrapDto;
 import com.example.w7_miniproject_backend.repository.PostRepository;
 import com.example.w7_miniproject_backend.repository.ScrapRepository;
 import com.example.w7_miniproject_backend.repository.UserRepository;
+import com.example.w7_miniproject_backend.security.jwt.JwtDecoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,11 @@ public class ScrapService {
     private final ScrapRepository scrapRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final JwtDecoder jwtDecoder;
 
     @Transactional
-    public ScrapDto createScrap(Long postId, String username) {
+    public ScrapDto createScrap(Long postId, String usernameDecode) {
+        String username = jwtDecoder.decodeUsername(usernameDecode);
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다."));
         User user = userRepository.findByUsername(username)

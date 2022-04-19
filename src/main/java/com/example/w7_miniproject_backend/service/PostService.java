@@ -6,6 +6,7 @@ import com.example.w7_miniproject_backend.dto.postDto.PostRequestDto;
 import com.example.w7_miniproject_backend.dto.postDto.PostResponseDto;
 import com.example.w7_miniproject_backend.repository.LikeRepository;
 import com.example.w7_miniproject_backend.repository.PostRepository;
+import com.example.w7_miniproject_backend.repository.ScrapRepository;
 import com.example.w7_miniproject_backend.repository.UserRepository;
 import com.example.w7_miniproject_backend.security.jwt.JwtDecoder;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final LikeRepository likeRepository;
+    private final ScrapRepository scrapRepository;
     private final JwtDecoder jwtDecoder;
 
     @Transactional
@@ -47,22 +49,49 @@ public class PostService {
         return ResponseEntity.ok().body("등록 완료");
     }
 
-    public ResponseEntity getPostDeatils(Long postId) {
-        return ResponseEntity.ok().body("출력");
+    public ResponseEntity<PostResponseDto> getPostDeatils(Long postId, String user) {
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new IllegalArgumentException("찾으시는 게시물이 존재하지 않습니다.")
+        );
+        String username = jwtDecoder.decodeUsername(user);
+        User joinUser = userRepository.findByUsername(username).orElseThrow(
+                () -> new IllegalArgumentException("유효한 회원을 찾을 수 없습니다."));
+        Long Likes = 0L;
+        Long Scraps = 0L;
+        if (likeRepository.findByUserAndPost(joinUser, post).orElse(null) == null){
+            Likes = likeRepository.countAllByPostId(postId);
+        }
+
+        if (scrapRepository.findByPostAndUser(post, joinUser).orElse(null) == null){
+            Scraps = scrapRepository.countAllByPostId(postId);
+        }
+
+        PostResponseDto.DetailResponse detailDto = PostResponseDto.DetailResponse
+                .builder()
+                .userName(post.getUser().getUsername())
+                .des(post.getDes())
+                .modifiedAt(formmater(post.getModifiedAt()))
+                .roomUrl(post.getRoomUrl())
+                .likeTotal(Likes)
+                .scrapTotal(Scraps)
+                .build();
+        return new ResponseEntity(detailDto, HttpStatus.OK);
     }
 
     public ResponseEntity<PostResponseDto> getAllPost() {
         List<Post> posts = postRepository.findAllByOrderByCreatedAtDesc();
-        List<PostResponseDto> postReponse = new ArrayList<>();
+        List<PostResponseDto.MainResponse> postReponse = new ArrayList<>();
         for (Post post : posts) {
             Long LikeTotal = likeRepository.countAllByPostId(post.getId());
-            PostResponseDto postDto = PostResponseDto
+            Long ScrapTotal = scrapRepository.countAllByPostId(post.getId());
+            PostResponseDto.MainResponse postDto = PostResponseDto.MainResponse
                     .builder()
                     .userName(post.getUser().getUsername())
                     .des(post.getDes())
                     .modifiedAt(formmater(post.getModifiedAt()))
                     .roomUrl(post.getRoomUrl())
                     .likeTotal(LikeTotal)
+                    .scrapTotal(ScrapTotal)
                     .build();
             postReponse.add(postDto);
         }

@@ -131,6 +131,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // main 페이지 허용
         skipPathList.add("GET,/**");
         skipPathList.add("GET,/posts/**");
+        skipPathList.add("GET,/post/**");
         skipPathList.add("POST,/**");
 
 
@@ -138,6 +139,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/post/**");
         skipPathList.add("PUT,/posts/**");
         skipPathList.add("DELETE,/posts/**");
+
+        // comment 페이지 허용
+        skipPathList.add("POST,/comment/**");
+        skipPathList.add("PUT,/comment/**");
+        skipPathList.add("DELETE,/comment/**");
+
 
         // Swagger
         skipPathList.add("GET, /swagger-ui.html");
