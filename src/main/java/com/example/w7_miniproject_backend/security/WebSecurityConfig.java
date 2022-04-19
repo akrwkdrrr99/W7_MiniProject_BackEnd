@@ -172,6 +172,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.setAllowCredentials(true) ;
         configuration.addAllowedOriginPattern("*");
         configuration.addAllowedOrigin("http://localhost:3000"); // local 테스트 시
+        configuration.addAllowedOrigin("http://localhost:8080"); // local 테스트 시
         // 수정 필요
 //        configuration.addAllowedOrigin("http://example.amazonaws.com"); // 배포 시
         configuration.addAllowedMethod("*");

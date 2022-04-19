@@ -1,21 +1,29 @@
 package com.example.w7_miniproject_backend.dto.userDto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
 public class PostRequestDto {
-    private String roomimg;
-    private String roomsize;
-    private String roomstyle;
-    private String space;
-    private String des;
-    //코맨트같은 개념
 
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class SaveRequest {
+        private String des;
+    }
 
-
-
-
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    @Setter
+    @Builder
+    public static class originRequest {
+        private String roomsize;
+        private String roomstyle;
+        private String space;
+        private String des;
+    }
 
 }
+

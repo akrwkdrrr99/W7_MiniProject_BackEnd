@@ -8,10 +8,11 @@ import javax.persistence.*;
 
 
 @NoArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor //
 @Getter
 @Entity
 public class Category {
+//카테고리도 createcategory로 service만들기?
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,5 +28,9 @@ public class Category {
     private String space;
 
 
-
+    public Category(String roomsize, String roomstyle, String space) {
+        this.roomsize = roomsize;
+        this.roomstyle = roomstyle;
+        this.space = space;
+    }
 }
