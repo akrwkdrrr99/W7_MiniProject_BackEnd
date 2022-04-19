@@ -1,5 +1,6 @@
 package com.example.w7_miniproject_backend.domain;
 
+import com.example.w7_miniproject_backend.dto.postDto.PostRequestDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -50,4 +51,9 @@ public class Post extends Timestamped {
 
     @Column
     private String des;
+
+    public void update(PostRequestDto.PutRequest postDto, String url, String fileName) {
+        this.des = postDto.getDes();
+        this.roomurl = url;
+    }
 }

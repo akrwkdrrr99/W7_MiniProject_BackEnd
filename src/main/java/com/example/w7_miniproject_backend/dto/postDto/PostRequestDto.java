@@ -15,4 +15,13 @@ public class PostRequestDto {
         private String des;
         private Category category;
     }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @Data
+    public static class PutRequest {
+        private String des;
+        private String category;
+    }
 }

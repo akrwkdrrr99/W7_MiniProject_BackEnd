@@ -110,5 +110,33 @@ public class PostService {
     public String formmater(LocalDateTime localDateTime) {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd").format(localDateTime);
     }
+
+    public ResponseEntity<HttpStatus> update(Long postId, MultipartFile multipartFile, PostRequestDto.PutRequest postDto, String user) {
+        String username = jwtDecoder.decodeUsername(user);
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new NullPointerException("찾으시는 게시글이 존재하지 않습니다."));
+        awsS3Service.deleteFile(post.getRoomimg());
+        validateCheckUser(username, post);
+//        PostValidator.validatePostPutRegister(multipartFile, postDto);
+        Map<String, String> map = awsS3Service.uploadFile(multipartFile);
+
+        post.update(postDto , map.get("url") , map.get("fileName"));
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    private void validateCheckUser(String user, Post post) {
+        if (!user.equals(post.getUser().getUsername())) {
+            throw new IllegalArgumentException("삭제 권한이 없는 유저 입니다.");
+        }
+    }
+
+    public ResponseEntity delete(Long postId, String user) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new NullPointerException("찾는 게시물이 없습니다."));
+        String username = jwtDecoder.decodeUsername(user);
+        validateCheckUser(username, post);
+        postRepository.delete(post);
+        awsS3Service.deleteFile(post.getRoomimg());
+        return ResponseEntity.ok().body("삭제완료");
+    }
 }
 
