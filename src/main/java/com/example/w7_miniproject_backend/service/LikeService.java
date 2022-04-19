@@ -33,7 +33,7 @@ public class LikeService {
 
         //있어? 지우고 0줘
         if (likeRepository.findByUserAndPost(user, post).orElse(null) == null){
-            likeRepository.deleteByPostId(post);
+            likeRepository.deleteByPostAndUser(post, user);
             Long cnt = likeRepository.countAllByPostId(postId);
             return LikeDto.builder()
                     .likebool(false)

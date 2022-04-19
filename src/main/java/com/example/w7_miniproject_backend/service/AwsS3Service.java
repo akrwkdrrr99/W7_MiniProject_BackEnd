@@ -6,6 +6,7 @@ import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.boot.Metadata;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -30,10 +31,17 @@ public class AwsS3Service {
     private final AmazonS3 amazonS3;
     @Transactional
     public Map<String, String> uploadFile(MultipartFile multipartFile) {
-
         ObjectMetadata objectMetadata = new ObjectMetadata();
+        if (multipartFile.getContentType().equals("multipart/form-data")
+                && getFileExtension(multipartFile.getOriginalFilename()).equals(".jpg")) {
+            objectMetadata.setContentType("image/jpg");
+        }
+
+        if (multipartFile.getContentType().equals("multipart/form-data")
+                && getFileExtension(multipartFile.getOriginalFilename()).equals(".png")) {
+            objectMetadata.setContentType("image/png");
+        }
         //objectMetaData에 파라미터로 들어온 파일의 타입 , 크기를 할당.
-        objectMetadata.setContentType(multipartFile.getContentType());
         objectMetadata.setContentLength(multipartFile.getSize());
 
         //fileName에 파라미터로 들어온 파일의 이름을 할당.
@@ -64,14 +72,14 @@ public class AwsS3Service {
     }
 
     private String getFileExtension(String fileName) { // file 형식이 잘못된 경우를 확인하기 위해 만들어진 로직이며, 파일 타입과 상관없이 업로드할 수 있게 하기 위해 .의 존재 유무만 판단하였습니다.
-//        ArrayList<String> fileValidate = new ArrayList<>();
-//        fileValidate.add(".jpg");
-//        fileValidate.add(".png");
-//        String idxFileName = fileName.substring(fileName.lastIndexOf("."));
-//        if (!fileValidate.contains(idxFileName)){
-//            System.out.println("idxFileName = " + idxFileName);
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
-//        }
+        ArrayList<String> fileValidate = new ArrayList<>();
+        fileValidate.add(".jpg");
+        fileValidate.add(".png");
+        String idxFileName = fileName.substring(fileName.lastIndexOf("."));
+        if (!fileValidate.contains(idxFileName)){
+            System.out.println("idxFileName = " + idxFileName);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "잘못된 형식의 파일(" + fileName + ") 입니다.");
+        }
         return fileName.substring(fileName.lastIndexOf("."));
     }
 
