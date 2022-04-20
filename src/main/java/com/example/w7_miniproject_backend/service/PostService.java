@@ -141,13 +141,13 @@ public class PostService {
         }
     }
 
-    public ResponseEntity delete(Long postId, String user) {
+    public ResponseEntity<HttpStatus> delete(Long postId, String user) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new NullPointerException("찾는 게시물이 없습니다."));
         String username = jwtDecoder.decodeUsername(user);
         validateCheckUser(username, post);
         postRepository.delete(post);
         awsS3Service.deleteFile(post.getRoomimg());
-        return ResponseEntity.ok().body("삭제완료");
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
 

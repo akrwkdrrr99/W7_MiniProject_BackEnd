@@ -56,5 +56,6 @@ public class Post extends Timestamped {
     public void update(PostRequestDto.PutRequest postDto, String url, String fileName) {
         this.des = postDto.getDes();
         this.roomurl = url;
+        this.roomimg = fileName;
     }
 }

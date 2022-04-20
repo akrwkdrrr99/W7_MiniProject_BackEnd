@@ -15,7 +15,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    public ResponseEntity registerUser(SignupRequestDto signupRequestDto) {
+    public ResponseEntity<String> registerUser(SignupRequestDto signupRequestDto) {
 
         // username
         String username = signupRequestDto.getUsername();

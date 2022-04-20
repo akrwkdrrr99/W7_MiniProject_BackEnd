@@ -22,6 +22,6 @@ public class PostRequestDto {
     @Data
     public static class PutRequest {
         private String des;
-        private String category;
+//        private String category;
     }
 }

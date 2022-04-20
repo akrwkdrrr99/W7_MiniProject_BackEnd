@@ -38,13 +38,13 @@ public class PostController {
     @PutMapping("/posts/{postId}")
     public ResponseEntity<HttpStatus> postUpdate(@PathVariable Long postId ,
                                                  @RequestPart("file") MultipartFile multipartFile,
-                                                 @RequestPart("information") PostRequestDto.PutRequest postDto,
+                                                 @RequestPart("jsons") PostRequestDto.PutRequest postDto,
                                                  @RequestHeader("Authorization") String user){
         return postService.update(postId , multipartFile , postDto , user);
     }
 
     @DeleteMapping("/posts/{postId}")
-    public ResponseEntity postDelete(@PathVariable Long postId , @RequestHeader("Authorization") String user){
+    public ResponseEntity<HttpStatus> postDelete(@PathVariable Long postId , @RequestHeader("Authorization") String user){
         return postService.delete(postId , user);
     }
 
