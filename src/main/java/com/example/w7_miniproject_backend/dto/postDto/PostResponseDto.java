@@ -2,6 +2,8 @@ package com.example.w7_miniproject_backend.dto.postDto;
 
 import com.example.w7_miniproject_backend.domain.Category;
 import com.example.w7_miniproject_backend.domain.Comment;
+import com.example.w7_miniproject_backend.dto.commentDto.CommentDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,6 +45,7 @@ public class PostResponseDto {
         private String des;
         private String modifiedAt;
 //        private Category category;
-        List<Comment> comment;
+//        private List<Comment> comment;
+        public List<CommentDto.listDto> commentDtoList;
     }
 }

@@ -20,6 +20,7 @@ public class Liken {
     @ManyToOne
     private Post post;
 
+
     @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;

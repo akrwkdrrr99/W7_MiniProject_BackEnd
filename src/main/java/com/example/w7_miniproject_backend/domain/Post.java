@@ -1,6 +1,7 @@
 package com.example.w7_miniproject_backend.domain;
 
 import com.example.w7_miniproject_backend.dto.postDto.PostRequestDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"post"})
 public class Post extends Timestamped {
 
     @Id
@@ -29,7 +29,6 @@ public class Post extends Timestamped {
     private String roomimg;
     private String roomurl;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
@@ -41,8 +40,10 @@ public class Post extends Timestamped {
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Scrapbook> scrap;
 
+    @JsonBackReference
     @ManyToOne
     private Category category;
+
 
     @ManyToOne
     @JoinColumn(name= "user_id")

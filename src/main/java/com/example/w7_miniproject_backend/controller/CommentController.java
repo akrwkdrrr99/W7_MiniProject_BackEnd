@@ -12,36 +12,28 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentController {
     private final CommentService commentService;
-    private final JwtDecoder jwtDecoder;
     //댓글작성
     @PostMapping("/comment")
     public ResponseEntity registerComment(@RequestBody CommentDto commentDto,
                                           @RequestHeader("Authorization") String user
     ){
-        // 로그인 되어 있는 ID
-        if (user != null) {
-            String username = jwtDecoder.decodeUsername(user);
-            return commentService.registerComment(commentDto, username);
-        }
-        return new ResponseEntity("실패", HttpStatus.BAD_REQUEST);
+        return commentService.registerComment(commentDto, user);
     }
 
     //댓글수정
     @PutMapping("/comment/{commentId}")
-    public ResponseEntity updateComment(@PathVariable Long commentId,
+    public ResponseEntity<String> updateComment(@PathVariable Long commentId,
                                         @RequestBody CommentDto commentDto,
                                         @RequestHeader("Authorization") String user
     ) {
-        String username = jwtDecoder.decodeUsername(user);
-        return commentService.updateComment(commentId, commentDto, username);
+        return commentService.updateComment(commentId, commentDto, user);
     }
 
     //댓글삭제
     @DeleteMapping("/comment/{commentId}")
-    public ResponseEntity deleteComment(@PathVariable Long commentId,
+    public ResponseEntity<String> deleteComment(@PathVariable Long commentId,
                                         @RequestHeader("Authorization") String user
                                         ){
-        String username = jwtDecoder.decodeUsername(user);
-        return commentService.deleteComment(commentId, username);
+        return commentService.deleteComment(commentId, user);
     }
 }

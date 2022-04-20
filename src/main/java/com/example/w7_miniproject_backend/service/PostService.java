@@ -4,6 +4,7 @@ import com.example.w7_miniproject_backend.domain.Category;
 import com.example.w7_miniproject_backend.domain.Comment;
 import com.example.w7_miniproject_backend.domain.Post;
 import com.example.w7_miniproject_backend.domain.User;
+import com.example.w7_miniproject_backend.dto.commentDto.CommentDto;
 import com.example.w7_miniproject_backend.dto.postDto.PostRequestDto;
 import com.example.w7_miniproject_backend.dto.postDto.PostResponseDto;
 import com.example.w7_miniproject_backend.repository.*;
@@ -60,6 +61,15 @@ public class PostService {
         User joinUser = userRepository.findByUsername(username).orElseThrow(
                 () -> new IllegalArgumentException("유효한 회원을 찾을 수 없습니다."));
         List<Comment> commentList = commentRepository.findByPostId(postId);
+        List<CommentDto.listDto> commentlistDto = new ArrayList<>();
+        for(Comment comment : commentList) {
+            CommentDto.listDto listDto = CommentDto.listDto.builder()
+                    .postid(comment.getPost().getId())
+                    .comments(comment.getComments())
+                    .nickname(comment.getUser().getNickname())
+                    .build();
+            commentlistDto.add(listDto);
+        }
 //        Category category =
         Long Likes = 0L;
         Long Scraps = 0L;
@@ -73,14 +83,14 @@ public class PostService {
 
         PostResponseDto.DetailResponse detailDto = PostResponseDto.DetailResponse
                 .builder()
-                .nickname(post.getUser().getUsername())
+                .nickname(post.getUser().getNickname())
                 .des(post.getDes())
                 .modifiedAt(formmater(post.getModifiedAt()))
                 .roomurl(post.getRoomurl())
                 .liketotal(Likes)
                 .scraptotal(Scraps)
 //                .category()
-                .comment(commentList)
+                .commentDtoList(commentlistDto)
                 .build();
         return new ResponseEntity(detailDto, HttpStatus.OK);
     }
@@ -94,7 +104,7 @@ public class PostService {
             PostResponseDto.MainResponse postDto = PostResponseDto.MainResponse
                     .builder()
                     .id(post.getId())
-                    .nickname(post.getUser().getUsername())
+                    .nickname(post.getUser().getNickname())
                     .des(post.getDes())
                     .modifiedAt(formmater(post.getModifiedAt()))
                     .roomurl(post.getRoomurl())
@@ -121,6 +131,7 @@ public class PostService {
         Map<String, String> map = awsS3Service.uploadFile(multipartFile);
 
         post.update(postDto , map.get("url") , map.get("fileName"));
+        postRepository.save(post);
         return new ResponseEntity(HttpStatus.OK);
     }
 

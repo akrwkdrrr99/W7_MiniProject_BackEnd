@@ -1,7 +1,11 @@
 package com.example.w7_miniproject_backend.dto.commentDto;
 
+import com.example.w7_miniproject_backend.domain.Comment;
 import com.example.w7_miniproject_backend.domain.Post;
+import com.example.w7_miniproject_backend.dto.postDto.PostResponseDto;
 import lombok.*;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -36,5 +40,15 @@ public class CommentDto {
     public static class commentUpdateResponse {
         private Long commentid;
         private String modifiedAt;
+    }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @Getter
+    public static class listDto {
+        private Long postid;
+        private String nickname;
+        private String comments;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.w7_miniproject_backend.domain;
 
 import com.example.w7_miniproject_backend.dto.commentDto.CommentDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,11 +18,11 @@ public class Comment extends Timestamped{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name= "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="post_id", nullable = false)
     private Post post;
 
