@@ -17,9 +17,9 @@ public class Scrapbook extends Timestamped{
     private Long id;
 
     @ManyToOne
-    private Post post;
+    private Long postid;
 
     @ManyToOne
     @JoinColumn(name= "user_id")
-    private User user;
+    private Long userid;
 }

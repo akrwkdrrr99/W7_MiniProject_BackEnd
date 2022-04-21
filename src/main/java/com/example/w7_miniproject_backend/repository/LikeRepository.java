@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface LikeRepository extends JpaRepository<Liken,Long> {
-    Optional<Liken> findByUserAndPost(User user, Post post);
-    void deleteByPostAndUser(Post post, User user);
-    Long countAllByPostId(Long id);
+    Optional<Liken> findByUseridAndPostid(Long userid, Long postid);
+    void deleteByPostidAndUserid(Long userid, Long postid);
+    Long countAllByPostid(Long postid);
 }

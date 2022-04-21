@@ -48,7 +48,7 @@ public class Post extends Timestamped {
 
     @ManyToOne
     @JoinColumn(name= "user_id")
-    private User user;
+    private Long userid;
     //     포스트 정보
 
     @Column
