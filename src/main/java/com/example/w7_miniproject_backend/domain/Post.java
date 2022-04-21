@@ -43,6 +43,7 @@ public class Post extends Timestamped {
     private List<Scrapbook> scrap;
 
 
+    @JsonBackReference
     @ManyToOne
     private Category category;
 
