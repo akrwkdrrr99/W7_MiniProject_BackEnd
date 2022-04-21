@@ -24,4 +24,13 @@ public class PostRequestDto {
         private String des;
 //        private String category;
     }
+
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    @Data
+    public static class GetAll {
+        private String des;
+//        private String category;
+    }
 }

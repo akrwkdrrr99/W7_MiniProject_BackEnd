@@ -16,7 +16,6 @@ public class Scrapbook extends Timestamped{
     @Id
     private Long id;
 
-    @JsonBackReference
     @ManyToOne
     private Post post;
 

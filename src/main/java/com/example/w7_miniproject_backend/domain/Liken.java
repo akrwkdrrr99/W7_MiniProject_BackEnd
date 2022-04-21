@@ -16,10 +16,8 @@ public class Liken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference
     @ManyToOne
     private Post post;
-
 
     @ManyToOne
     @JoinColumn(name= "user_id")

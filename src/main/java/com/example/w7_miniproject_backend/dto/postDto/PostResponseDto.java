@@ -28,7 +28,6 @@ public class PostResponseDto {
         private Long scraptotal;
         private String des;
         private String modifiedAt;
-//        private Category category;
     }
 
     @AllArgsConstructor
